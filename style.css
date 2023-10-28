@@ -83,6 +83,9 @@ body {
   margin-top: 1.7rem;
   cursor: pointer;
   transition: 0.4s;
+  width: 200px;
+  height: 50px;
+  border-radius: 20px;
 }
 .form input.button:hover {
   background: #006653;

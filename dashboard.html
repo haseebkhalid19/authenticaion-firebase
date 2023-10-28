@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="style.css" />
     <title>Firebase Auth</title>
   </head>
-  <body>
-    <h1 style="color: #fff">Dashboard</h1>
+  <body style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+    <h1 style="color: #fff">Welcome </h1>
     <input type="button" id="signout" class="button" value="Sign Out" />
 
     <script type="module">
@@ -40,14 +40,17 @@
       const app = initializeApp(firebaseConfig);
       const database = getDatabase(app);
       const auth = getAuth();
-
+      
       const user = auth.currentUser;
       onAuthStateChanged(auth, (user) => {
         if (user) {
-          // User is signed in, see docs for a list of available properties
-          // https://firebase.google.com/docs/reference/js/auth.user
           const uid = user.uid;
-          // ...
+          const email = user.email;
+          var displayName = document.getElementsByTagName("h1")[0];
+          console.log(user);
+          var username = email.split("@gmail.com");
+          displayName.textContent += username;
+
         } else {
           // User is signed out
           // ...
@@ -58,7 +61,7 @@
       logout.addEventListener("click", () => {
         signOut(auth)
           .then(() => {
-            window.location.href = 'index.html';
+            window.location.href = "index.html";
           })
           .catch((error) => {
             const errorCode = error.code;
